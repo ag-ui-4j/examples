@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>io.github.ag-ui-4j.examples</groupId>
+    <artifactId>spring-ai-ollama</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>spring-ai-ollama</name>
+    <description>AG-UI agent backed by a local Ollama model via Spring AI</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <spring-ai.version>1.1.2</spring-ai.version>
+        <ag-ui-spring.version>1.1.0-SNAPSHOT</ag-ui-spring.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!--
+          Exposes the AG-UI /agent SSE endpoint with no application code: it
+          auto-registers a SpringAiAgent from the auto-configured ChatClient.Builder
+          (provided by the Ollama model starter below) and serves it.
+        -->
+        <dependency>
+            <groupId>io.github.ag-ui-4j</groupId>
+            <artifactId>ag-ui-spring-ai-spring-boot-starter</artifactId>
+            <version>${ag-ui-spring.version}</version>
+        </dependency>
+
+        <!-- Spring AI model: a local Ollama chat model. -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-ollama</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

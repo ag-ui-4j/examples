@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>io.github.ag-ui-4j.examples</groupId>
+    <artifactId>adk-gemini</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>adk-gemini</name>
+    <description>AG-UI agent backed by a Google ADK (Gemini) agent, exposed over Spring Boot</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <ag-ui-spring.version>3.4.0-SNAPSHOT</ag-ui-spring.version>
+        <ag-ui-adk.version>0.1.0-SNAPSHOT</ag-ui-adk.version>
+    </properties>
+
+    <dependencies>
+        <!-- Exposes an Agent bean over the AG-UI /agent SSE endpoint (WebFlux). -->
+        <dependency>
+            <groupId>io.github.ag-ui-4j</groupId>
+            <artifactId>ag-ui-spring-boot-starter</artifactId>
+            <version>${ag-ui-spring.version}</version>
+        </dependency>
+
+        <!-- AdkAgent + Google ADK (brings google-adk, genai, RxJava transitively). -->
+        <dependency>
+            <groupId>io.github.ag-ui-4j</groupId>
+            <artifactId>ag-ui-adk</artifactId>
+            <version>${ag-ui-adk.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

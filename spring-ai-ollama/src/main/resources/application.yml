@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ag-ui-spring-ai-ollama-example
+  ai:
+    ollama:
+      # The local Ollama server. Start it with `ollama serve` (default port 11434).
+      base-url: http://localhost:11434
+      chat:
+        options:
+          # Pull this first with `ollama pull llama3.2`, or change it to any model
+          # you have installed (e.g. qwen2.5, mistral, llama3.1).
+          model: llama3.2
+          temperature: 0.7
+
+# AG-UI options.
+ag-ui:
+  spring-ai:
+    # AG-UI shared state (the update_state tool and STATE_SNAPSHOT/DELTA events).
+    # This can be enabled alongside the server-side WeatherTools: the agent runs
+    # its own tool loop, so backend tools, client tools and state coexist.
+    share-state: false
+    # state-updates: DELTA
+  server:
+    # The endpoint path (defaults to /agent).
+    path: /agent
+
+server:
+  port: 8080

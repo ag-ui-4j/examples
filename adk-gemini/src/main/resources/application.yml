@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ag-ui-adk-gemini-example
+
+# Google ADK agent settings.
+adk:
+  # Any Gemini model id. Requires a Gemini API key:
+  #   export GOOGLE_API_KEY=your-key      (Gemini Developer API)
+  # or configure Vertex AI per the Google GenAI SDK.
+  model: gemini-2.0-flash
+
+# AG-UI options.
+ag-ui:
+  server:
+    # The endpoint path (defaults to /agent).
+    path: /agent
+
+server:
+  # 8081 so it can run alongside the spring-ai-ollama example (8080).
+  port: 8081
